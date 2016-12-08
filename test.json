@@ -1,4 +1,5 @@
 [
-  {"var" : "val"},
-  {"var" : "val"}
+  {"name" : "val1"},
+  {"name" : "val2"},
+  {"name" : "tes"}
 ]
