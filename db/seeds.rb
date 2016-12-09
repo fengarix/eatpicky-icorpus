@@ -31,7 +31,6 @@ resto_b.recipes << ayam_cabai
 resto_c.recipes << teh_tarik
 resto_d.recipes << ayam_goreng
 resto_e.recipes << ayam_goreng
-resto_b.recipes << ayam_cabai
 
 ayam_goreng.ingredients << ayam
 ayam_goreng.ingredients << tepung
