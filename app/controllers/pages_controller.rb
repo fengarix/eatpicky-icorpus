@@ -17,9 +17,12 @@ class PagesController < ApplicationController
       end
     end
 
-    sorted_recipe_restaurant = @recipe_restaurants.sort_by { |elm| elm["weight"] }
+    sorted_recipe_restaurant = @recipe_restaurants.sort_by { |elm| elm[:weight] }.reverse
     restaurants = sorted_recipe_restaurant.map{|elm| elm[:restaurant]}.uniq
 
+    puts "SORTED BEGINNING"
+    puts @recipe_restaurants
+    puts "SORTED END"
     @result = []
     (0..4).each do |i|
       break if restaurants[i] == nil

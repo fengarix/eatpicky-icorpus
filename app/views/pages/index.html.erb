@@ -2,6 +2,12 @@
 
 <% @result.each do |res| %>
 
-<%=res[:restaurant].name%></br>
-
+Resto: <%=res[:restaurant].name%></br>
+	<% i = 0 %>
+	<% while i < res[:recipes].length do %>
+   		resep: <%= res[:recipes][i].title%></br>
+   		nilai: <%= res[:weight][i]%></br>
+   		<% i +=1 %>
+	<% end %>
+	</br>
 <% end %>
