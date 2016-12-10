@@ -4,7 +4,7 @@ default: &default
   timeout: 5000
   username: eatpicky
   password: icorpus
-
+  host: localhost
 development:
   <<: *default
   database: eatpicky-dev
