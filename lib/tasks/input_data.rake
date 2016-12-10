@@ -20,13 +20,21 @@ namespace :db do
     file = File.read(Rails.root.join(filename))
     data = data_hash = JSON.parse(file)
     data.each do |element|
-      puts element
       save(element) if !is_dryrun
     end
   end
 
   def save(element)
-    puts 'saving...' + element["ingredients"][0]
+    @recipe = Recipe.create(title: element["title"])
+    @recipe.save
+    element["bahan"].each do |bahan|
+      @ingredient = Ingredient.where(name: bahan)
+      if @ingredient.empty?
+        @ingredient = Ingredient.create(name: bahan)
+        @recipe.ingredients << @ingredient
+      else
+        @recipe.ingredients << @ingredient[0]
+      end
+    end
   end
-
 end
