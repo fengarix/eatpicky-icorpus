@@ -1,0 +1,9 @@
+test
+
+<%= form_for :query, :url => { :action => "show_result" } do |q| %>
+	Masukkan bahan yang kamu inginkan!
+  <%= q.text_field :wants, placeholder: "ex./ Ayam,Teh" %></br>
+  Masukkan bahan yang tidak kamu inginkan
+  <%= q.text_field :not_wants, placeholder: "ex./ Cabai" %>
+  <%= submit_tag 'Search!' %>
+<% end %>

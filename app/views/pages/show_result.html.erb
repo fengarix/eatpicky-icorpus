@@ -1,0 +1,13 @@
+<h1>HASILNYA:</h1>
+
+<% @result.each do |res| %>
+
+Resto: <%=res[:restaurant].name%></br>
+	<% i = 0 %>
+	<% while i < res[:recipes].length do %>
+   		resep: <%= res[:recipes][i].title%></br>
+   		nilai: <%= res[:weight][i]%></br>
+   		<% i +=1 %>
+	<% end %>
+	</br>
+<% end %>

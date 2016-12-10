@@ -1,5 +1,10 @@
 [
-  {"name" : "val1"},
-  {"name" : "val2"},
-  {"name" : "tes"}
+  {
+    "title": "Ayam Goreng",
+    "ingredients": ["Ayam","Tepung"]
+  },
+  {
+    "title": "Ayam Cabai",
+    "ingredients": ["Ayam","Cabai"]
+  }
 ]

@@ -26,7 +26,7 @@ namespace :db do
   end
 
   def save(element)
-    puts 'saving...' + element["name"]
+    puts 'saving...' + element["ingredients"][0]
   end
 
 end
