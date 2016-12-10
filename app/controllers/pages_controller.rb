@@ -1,4 +1,5 @@
 require 'weight_calculator.rb'
+require 'alias_ingredient.rb'
 
 class PagesController < ApplicationController
 
@@ -6,13 +7,11 @@ class PagesController < ApplicationController
   end
 
   def show_result
-    # @want = ["Ayam", "Teh"]
-    # @not_want = ["Cabai"]
 
-    puts params[:query][:wants]
-    puts params[:query][:not_wants]
     @want = params[:query][:wants].split(',')
     @not_want = params[:query][:not_wants].split(',')
+    @want = AliasIngredient.get_alias_ingredient(@want)
+    @not_want = AliasIngredient.get_alias_ingredient(@not_want)
 
     # Ambil resep sesuai query want dan not_want
     recipes_result = Recipe.get_recipes_by_multiple_ingredients(@want, @not_want)
@@ -30,9 +29,9 @@ class PagesController < ApplicationController
     sorted_recipe_restaurant = @recipe_restaurants.sort_by { |elm| elm[:weight] }.reverse
     restaurants = sorted_recipe_restaurant.map{|elm| elm[:restaurant]}.uniq
 
-    puts "SORTED BEGINNING"
-    puts @recipe_restaurants
-    puts "SORTED END"
+    # puts "SORTED BEGINNING"
+    # puts @recipe_restaurants
+    # puts "SORTED END"
     @result = []
     (0..4).each do |i|
       break if restaurants[i] == nil

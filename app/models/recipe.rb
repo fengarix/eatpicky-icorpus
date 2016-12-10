@@ -12,41 +12,38 @@ class Recipe < ActiveRecord::Base
     @recipes = []
     
     wants.each do |want|
+      want.downcase!
       @recipes = @recipes | get_recipes_by_wants(want)
     end
 
-    puts "ABIS DIAMBIL YANG MAU"
-    @recipes.each do |r|
-      puts r.title
-    end  
-    puts "LALA"
+    # puts "ABIS DIAMBIL YANG MAU"
+    # @recipes.each do |r|
+    #   puts r.title
+    # end  
+    # puts "LALA"
 
     not_wants.each do |not_want|
+      not_want.downcase!
       @recipes = get_recipes_by_not_wants(@recipes, not_want)
     end
 
-    
     @recipes.uniq{|t| t.id } 
 
-    puts "ABIS DIAMBIL YANG GAK MAU"
-    @recipes.each do |r|
-      puts r.title
-    end  
-    puts "LALA"
+    # puts "ABIS DIAMBIL YANG GAK MAU"
+    # @recipes.each do |r|
+    #   puts r.title
+    # end  
+    # puts "LALA"
 
     return @recipes
   end
 
   def self.get_recipes_by_wants(want)
-    recipes = Recipe.joins(:ingredients).where('ingredients.name = ?', want).uniq!
+    recipes = Recipe.joins(:ingredients).where('lower(ingredients.name) LIKE ?', "%"+want+"%").uniq!
   end
 
-  def self.get_recipes_by_not_wants(arr_recipe_wants, not_want)
-    arr_recipe_wants.select{|recipe| !recipe.ingredients.where(name: not_want).present?}
+  def self.get_recipes_by_not_wants(arr_recipe_wants, not_want) 
+    arr_recipe_wants.select{|recipe| !recipe.ingredients.where('lower(name) LIKE ?', '%'+not_want+'%').present?}
   end
 
 end
-
-
-
-
