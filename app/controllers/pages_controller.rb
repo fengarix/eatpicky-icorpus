@@ -3,17 +3,27 @@ require 'weight_calculator.rb'
 class PagesController < ApplicationController
 
   def index
-    @want = "Ayam"
-    @not_want = "Cabai"
+  end
+
+  def show_result
+    # @want = ["Ayam", "Teh"]
+    # @not_want = ["Cabai"]
+
+    puts params[:query][:wants]
+    puts params[:query][:not_wants]
+    @want = params[:query][:wants].split(',')
+    @not_want = params[:query][:not_wants].split(',')
 
     # Ambil resep sesuai query want dan not_want
-    recipes_result = Recipe.get_recipes_by_ingredients(@want, @not_want)
+    recipes_result = Recipe.get_recipes_by_multiple_ingredients(@want, @not_want)
     @recipe_restaurants = []
 
+    puts "KAJSDKAJSND"
+    puts recipes_result
     # Hitung weight per resep-restoran
     recipes_result.each do |recipe|
       recipe.restaurants.each do |restaurant|
-          @recipe_restaurants.push({recipe: recipe, restaurant: restaurant, weight: WeightCalculator.calculate_weight(recipe, restaurant, @want)})
+          @recipe_restaurants.push({recipe: recipe, restaurant: restaurant, weight: WeightCalculator.calculate_weight_multiple_input(recipe, restaurant, @want)})
       end
     end
 
