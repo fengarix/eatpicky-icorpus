@@ -18,13 +18,14 @@ ayam_goreng = Recipe.create(title: "Ayam Goreng")
 teh_tarik = Recipe.create(title: "Teh Tarik")
 ayam_cabai = Recipe.create(title: "Ayam Cabai")
 pizza_ayam = Recipe.create(title: "Pizza")
+teh_ayam_tanpa_title = Recipe.create(title: "Chicken Tea")
+teh_ayam_dengan_title = Recipe.create(title: "Teh Ayam")
 
 resto_a = Restaurant.create(name: "A", rating: 5, location: "Depok")
 resto_b = Restaurant.create(name: "B", rating: 4.5, location: "Depok")
 resto_c = Restaurant.create(name: "C", rating: 4, location: "Depok")
 resto_d = Restaurant.create(name: "D", rating: 3.5, location: "Depok")
 resto_e = Restaurant.create(name: "E", rating: 3, location: "Depok")
-
 
 resto_a.recipes << ayam_goreng
 resto_a.recipes << teh_tarik
@@ -33,6 +34,8 @@ resto_c.recipes << teh_tarik
 resto_d.recipes << ayam_goreng
 resto_d.recipes << pizza_ayam
 resto_e.recipes << ayam_goreng
+resto_a.recipes << teh_ayam_dengan_title
+resto_a.recipes << teh_ayam_tanpa_title
 
 ayam_goreng.ingredients << ayam
 ayam_goreng.ingredients << tepung
@@ -44,3 +47,7 @@ ayam_cabai.ingredients << tomat
 pizza_ayam.ingredients << tomat
 pizza_ayam.ingredients << ayam
 pizza_ayam.ingredients << tepung
+teh_ayam_tanpa_title.ingredients << teh
+teh_ayam_tanpa_title.ingredients << ayam
+teh_ayam_dengan_title.ingredients << teh
+teh_ayam_dengan_title.ingredients << ayam
