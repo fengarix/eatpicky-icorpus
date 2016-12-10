@@ -11,8 +11,10 @@ tomat = Ingredient.create(name: "Tomat")
 cabai = Ingredient.create(name: "Cabai")
 susu = Ingredient.create(name: "Susu")
 tepung = Ingredient.create(name: "Tepung")
+tepung_sagu = Ingredient.create(name: "Tepung Sagu")
 teh = Ingredient.create(name: "Teh")
 ayam = Ingredient.create(name: "Ayam")
+merica = Ingredient.create(name: "Merica")
 
 ayam_goreng = Recipe.create(title: "Ayam Goreng")
 teh_tarik = Recipe.create(title: "Teh Tarik")
@@ -20,6 +22,7 @@ ayam_cabai = Recipe.create(title: "Ayam Cabai")
 pizza_ayam = Recipe.create(title: "Pizza")
 teh_ayam_tanpa_title = Recipe.create(title: "Chicken Tea")
 teh_ayam_dengan_title = Recipe.create(title: "Teh Ayam")
+kue = Recipe.create(title: "Kue")
 
 resto_a = Restaurant.create(name: "A", rating: 5, location: "Depok")
 resto_b = Restaurant.create(name: "B", rating: 4.5, location: "Depok")
@@ -36,9 +39,11 @@ resto_d.recipes << pizza_ayam
 resto_e.recipes << ayam_goreng
 resto_a.recipes << teh_ayam_dengan_title
 resto_a.recipes << teh_ayam_tanpa_title
+resto_b.recipes << kue
 
 ayam_goreng.ingredients << ayam
 ayam_goreng.ingredients << tepung
+ayam_goreng.ingredients << merica
 teh_tarik.ingredients << teh
 teh_tarik.ingredients << susu
 ayam_cabai.ingredients << ayam
@@ -51,3 +56,13 @@ teh_ayam_tanpa_title.ingredients << teh
 teh_ayam_tanpa_title.ingredients << ayam
 teh_ayam_dengan_title.ingredients << teh
 teh_ayam_dengan_title.ingredients << ayam
+kue.ingredients << tepung_sagu
+
+
+## ALIAS
+
+cabe = Alias.create(name: "Cabe")
+lada = Alias.create(name: "Lada")
+
+merica.alias << lada
+cabai.alias << cabe
