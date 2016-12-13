@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
 <head>
   <title>Eatpicky</title>
-  <%= stylesheet_link_tag    'default', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'default', 'data-turbolinks-track' => true %>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag 'style' %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href="https://fonts.googleapis.com/css?family=Pacifico|Titillium+Web" rel="stylesheet">
 </head>
 <body>
-
-<%= yield %>
-
+    <%= yield %>
 </body>
 </html>
