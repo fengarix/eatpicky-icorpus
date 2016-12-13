@@ -1,9 +1,13 @@
-test
-
-<%= form_for :query, :url => { :action => "show_result" } do |q| %>
-	Masukkan bahan yang kamu inginkan!
-  <%= q.text_field :wants, placeholder: "ex./ Ayam,Teh" %></br>
-  Masukkan bahan yang tidak kamu inginkan
-  <%= q.text_field :not_wants, placeholder: "ex./ Cabai" %>
-  <%= submit_tag 'Search!' %>
+<div id="container">
+	<div id="title">
+		<p id="subtitle"> eatPicky </p>
+		<p id="tagline"> Picking food made easy </p>
+	</div>
+	<%= form_for :query, :html => {:class => "form-input"},:url => { :action => "show_result" } do |q| %>
+	<p> Masukkan bahan yang kamu inginkan! </p>
+  	<%= q.text_field :wants, :class => "text-field", placeholder: "ex./ Ayam,Teh" %></br>
+    <p> Masukkan bahan yang tidak kamu inginkan </p>
+  	<%= q.text_field :not_wants, :class => "text-field", placeholder: "ex./ Cabai" %>
+  	<%= submit_tag 'Search!', :class => "submit-btn" %>
 <% end %>
+</div>

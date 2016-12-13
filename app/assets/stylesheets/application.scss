@@ -1,0 +1,101 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ body {
+ 	background-image: asset-data-url("background.jpg");
+ 	background-size: 100% auto;
+ }
+
+ #container {
+ 	position: absolute;
+ 	width: 500px;
+ 	height: 420px;
+ 	top: 50%;
+ 	left: 50%;
+ 	margin: -210px 0 0 -250px;
+ 	background-color: rgba(255,255,255,0.95);
+ 	border-radius: 20px;
+ 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+ }
+
+  #subtitle {
+  	margin-top: 20px;
+  	margin-bottom: 20px;
+ 	color: rgb(214, 19, 42);
+ 	font-size: 75px;
+ 	text-align: center;
+ 	font-family: 'Pacifico', cursive;
+ }
+
+ #tagline {
+ 	margin-top: -40px;
+ 	margin-left: 160px;
+ 	font-family: 'Titillium Web', sans-serif;
+ 	font-size: 15px;
+ 	font-weight: bold;
+ 	color: rgb(214, 19, 42);
+ }
+
+ .form-input {
+ 	font-family: 'Titillium Web', sans-serif;
+ 	text-align: center;
+ }
+
+ .form-input .text-field {
+ 	left: 50px;
+ 	width: 400px;
+  	border-width: 2px;
+  	border-color:  #d6132a;
+  	border-radius: 50px;
+  	border-style: solid;
+  	padding: 15px;	
+  	outline: 0;
+  	color: black;
+  	font-weight: bold;
+  	text-align: center;
+ }
+
+ .form-input p {
+ 	margin-top: 20px;
+ 	margin-bottom: 5px;
+ 	color: #161616;
+ }
+
+ .form-input .submit-btn {
+ 	margin-top: 15px;
+ 	width : 100px;
+ 	height: 40px;
+ 	font-size: 18px;
+ 	background-color: #d6132a; 
+ 	border-width: 1px;
+ 	border-radius: 50px;
+ 	border-style: solid;
+ 	border-color: #d6132a;
+ 	color: white;
+ 	outline: 0;
+ 	box-shadow: 0 3px #999
+ }
+ 
+ .form-input .submit-btn:hover {
+ 	background-color: #fff;
+ 	border-color: #d6132a;
+ 	color: #d6132a;
+ }
+
+ .form-input .submit-btn:active {
+ 	box-shadow: none;
+ 	transform: translateY(3px);
+ }
