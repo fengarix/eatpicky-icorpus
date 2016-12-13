@@ -36,10 +36,10 @@ class PagesController < ApplicationController
     recipes_result = Recipe.get_recipes_by_multiple_ingredients(@want, @not_want)
     @recipe_restaurants = []
 
-    puts "KAJSDKAJSND"
-    recipes_result.each do |p|
-      puts p.title
-    end
+    # puts "KAJSDKAJSND"
+    # recipes_result.each do |p|
+    #   puts p.title
+    # end
     # puts recipes_result
     # Hitung weight per resep-restoran
     recipes_result.each do |recipe|
@@ -51,9 +51,9 @@ class PagesController < ApplicationController
     sorted_recipe_restaurant = @recipe_restaurants.sort_by { |elm| elm[:weight] }.reverse
     restaurants = sorted_recipe_restaurant.map{|elm| elm[:restaurant]}.uniq
 
-    puts "SORTED BEGINNING"
-    puts @recipe_restaurants
-    puts "SORTED END"
+    # puts "SORTED BEGINNING"
+    # puts @recipe_restaurants
+    # puts "SORTED END"
     @result = []
     (0..4).each do |i|
       break if restaurants[i] == nil

@@ -36,7 +36,6 @@ namespace :db do
         TriGramGenerator.generate_tri_gram(@ingredient)
       else
         @recipe.ingredients << @ingredient[0]
-        TriGramGenerator.generate_tri_gram(@ingredient[0])
       end
     end
   end

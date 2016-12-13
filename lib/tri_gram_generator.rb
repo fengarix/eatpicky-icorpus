@@ -67,6 +67,13 @@ class TriGramGenerator
     arr_jaccard = []
     arr_ingredient_tri_gram.each do |hashed|
       union = union_count(query_tri_gram, hashed[:ingredient])
+      # if hashed[:ingredient].name == "suatu_nama_ingredient"
+      #   puts "ingredient: "
+      #   puts hashed[:ingredient].name
+      #   puts hashed[:value]
+      #   puts "union: "
+      #   puts union
+      # end
       value = hashed[:value]/union.to_f
       arr_jaccard.push({ingredient: hashed[:ingredient], value: value})
     end
