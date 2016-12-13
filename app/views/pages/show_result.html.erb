@@ -1,13 +1,30 @@
-<h1>HASILNYA:</h1>
-
-<% @result.each do |res| %>
-
-Resto: <%=res[:restaurant].name%></br>
-	<% i = 0 %>
-	<% while i < res[:recipes].length do %>
-   		resep: <%= res[:recipes][i].title%></br>
-   		nilai: <%= res[:weight][i]%></br>
-   		<% i +=1 %>
+<header>
+	<p>EatPicky</p>
+</header>
+<div class = "big-container">
+<div class="left-bar">
+	<%= form_for :query, :url => { :action => "show_result" } do |q| %>
+  	<%= q.text_field :wants, :class => "text-field", placeholder: "Bahan diinginkan" %>
+  	<%= q.text_field :not_wants, :class => "text-field", placeholder: "Bahan tidak diinginkan" %>
+  	<%= submit_tag 'Search!', :class => "submit-btn" %>
+  	<% end %>
+</div>
+<div class="main-container">
+	<% j = 1 %>
+	<% @result.each do |res| %>
+	<div class="rest">
+	<%=image_tag("#{j}.jpg")%>
+	<% j += 1 %>
+	<div class="rest-name"> Restoran <%=res[:restaurant].name%></div>
+		<% i = 0 %>
+		<div class="rest-menu">
+		<% while i < res[:recipes].length do %>
+	   		<div class="menu"> Menu <%= res[:recipes][i].title%></div>
+	   		<% i +=1 %>
+		<% end %>
+		
+		</div>
+	</div>
 	<% end %>
-	</br>
-<% end %>
+</div>
+</div>
