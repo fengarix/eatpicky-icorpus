@@ -37,7 +37,10 @@ class PagesController < ApplicationController
     @recipe_restaurants = []
 
     puts "KAJSDKAJSND"
-    puts recipes_result
+    recipes_result.each do |p|
+      puts p.title
+    end
+    # puts recipes_result
     # Hitung weight per resep-restoran
     recipes_result.each do |recipe|
       recipe.restaurants.each do |restaurant|
@@ -48,9 +51,9 @@ class PagesController < ApplicationController
     sorted_recipe_restaurant = @recipe_restaurants.sort_by { |elm| elm[:weight] }.reverse
     restaurants = sorted_recipe_restaurant.map{|elm| elm[:restaurant]}.uniq
 
-    # puts "SORTED BEGINNING"
-    # puts @recipe_restaurants
-    # puts "SORTED END"
+    puts "SORTED BEGINNING"
+    puts @recipe_restaurants
+    puts "SORTED END"
     @result = []
     (0..4).each do |i|
       break if restaurants[i] == nil
