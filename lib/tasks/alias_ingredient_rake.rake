@@ -4,11 +4,9 @@ namespace :db do
 
   add_aliases('lada', %w(merica ladaku))
   add_aliases('cabai', %w(cabe))
-  add_aliases('bawang', %w(bw bwg))
   add_aliases('kecap asin', %w(soy))
   add_aliases('tauge', %w(toge))
   add_aliases('serai', %w(sereh))
-  add_aliases('gula jawa', %w(gula merah))
   add_aliases('limau', %w(limo))
 
   end
