@@ -1,5 +1,6 @@
 require 'weight_calculator.rb'
 require 'alias_ingredient.rb'
+require 'tri_gram_generator.rb'
 
 class PagesController < ApplicationController
 
@@ -10,9 +11,27 @@ class PagesController < ApplicationController
 
     @want = params[:query][:wants].split(',')
     @not_want = params[:query][:not_wants].split(',')
+
+    #Ubah dengan aliasnya
     @want = AliasIngredient.get_alias_ingredient(@want)
     @not_want = AliasIngredient.get_alias_ingredient(@not_want)
 
+    #TRIGRAM METHOD HERE#
+    tri_gram_handling_wants = tri_gram_handler(@want)
+    tri_gram_handling_not_wants = tri_gram_handler(@not_want)
+
+    @want = tri_gram_handling_wants[:can_process_original] + tri_gram_handling_wants[:can_process_recommendation]
+    @not_want = tri_gram_handling_not_wants[:can_process_original] + tri_gram_handling_not_wants[:can_process_recommendation]
+    @can_process_recommendation = tri_gram_handling_wants[:can_process_recommendation] + tri_gram_handling_not_wants[:can_process_recommendation]
+    @can_not_process = tri_gram_handling_wants[:can_not_process] + tri_gram_handling_not_wants[:can_not_process]
+
+    puts "CAN PROCESS RECOMMENDATION BEGINNING"
+    puts @can_process_recommendation
+    puts "CAN PROCESS RECOMMENDATION END"
+
+    puts "CAN NOT PROCESS BEGINNING"
+    puts @can_not_process
+    puts "CAN NOT PROCESS END"
     # Ambil resep sesuai query want dan not_want
     recipes_result = Recipe.get_recipes_by_multiple_ingredients(@want, @not_want)
     @recipe_restaurants = []
@@ -49,6 +68,28 @@ class PagesController < ApplicationController
       end
     end
     puts @result
+  end
+
+  def tri_gram_handler(queries)
+
+    # can_process, can_not_process
+    hashed_result = {can_not_process: [], can_process_recommendation: [], can_process_original: []}
+    queries.each do |q|
+
+      arr = Ingredient.where('name LIKE ?', '%'+q+'%')
+
+      if arr.empty?
+        recommendation_ingredient = TriGramGenerator.get_nearest_ingredient(q)
+        if recommendation_ingredient.nil?
+          hashed_result[:can_not_process].push(q)
+        else
+          hashed_result[:can_process_recommendation].push(recommendation_ingredient)
+        end
+      else
+        hashed_result[:can_process_original].push(q)
+      end
+    end
+    return hashed_result
   end
 
 end

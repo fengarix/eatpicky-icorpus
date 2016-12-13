@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+require 'tri_gram_generator.rb'
 
 tomat = Ingredient.create(name: "Tomat")
 cabai = Ingredient.create(name: "Cabai")
@@ -15,6 +16,13 @@ tepung_sagu = Ingredient.create(name: "Tepung Sagu")
 teh = Ingredient.create(name: "Teh")
 ayam = Ingredient.create(name: "Ayam")
 merica = Ingredient.create(name: "Merica")
+
+ingredients = Ingredient.all
+
+ingredients.each do |ing|
+  puts ing.name
+  TriGramGenerator.generate_tri_gram(ing)
+end
 
 ayam_goreng = Recipe.create(title: "Ayam Goreng")
 teh_tarik = Recipe.create(title: "Teh Tarik")
