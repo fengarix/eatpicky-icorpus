@@ -42,11 +42,6 @@ class TriGramGenerator
     #ingredient, value
     arr_ingredient_tri_gram = []
     query_tri_gram = get_tri_gram(query)
-    puts  "ISI QUERY TRIGRAM"
-    query_tri_gram.each do |q|
-      puts q
-    end
-    
 
     if query_tri_gram.empty?
       return nil
@@ -61,8 +56,6 @@ class TriGramGenerator
       arr_ingredient_tri_gram.push({ingredient: ingredient, value: 0})
       ingredient.tri_grams.each do |ing_tri_gram|
         #check apakah ingredient tersebut memiliki trigram yang sama dengan query
-        puts "ing_tri_gram"
-        puts ing_tri_gram.name
         if query_tri_gram.include? ing_tri_gram.name
           arr_ingredient_tri_gram[i][:value] += 1
         end
@@ -70,14 +63,22 @@ class TriGramGenerator
       i += 1
     end
 
-    sorted_arr_ingredient_tri_gram = arr_ingredient_tri_gram.sort_by { |elm| elm[:value] }.reverse
+    # Hitung jaccard coefficient
+    arr_jaccard = []
+    arr_ingredient_tri_gram.each do |hashed|
+      union = union_count(query_tri_gram, hashed[:ingredient])
+      value = hashed[:value]/union.to_f
+      arr_jaccard.push({ingredient: hashed[:ingredient], value: value})
+    end
+
+    sorted_arr_ingredient_tri_gram = arr_jaccard.sort_by { |elm| elm[:value] }.reverse
 
     sorted_arr_ingredient_tri_gram.each do |elm|
       puts elm[:ingredient].name
       puts elm[:value]
     end
 
-    if sorted_arr_ingredient_tri_gram[0][:value] == 0
+    if sorted_arr_ingredient_tri_gram[0][:value] < 0.4
       return nil
     else
       return sorted_arr_ingredient_tri_gram[0][:ingredient].name
@@ -102,6 +103,19 @@ class TriGramGenerator
       return []
     end
     return arr_result
+  end
+
+  def self.union_count(arr_query_tri_gram, ingredient)
+    arr_res = []
+    arr_query_tri_gram.each do |p|
+      arr_res.push(p)
+    end
+    ingredient.tri_grams.each do |tri|
+      arr_res.push(tri.name)
+    end
+    arr_res.uniq!
+
+    return arr_res.length
   end
 
 end
