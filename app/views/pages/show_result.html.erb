@@ -10,6 +10,22 @@
   	<% end %>
 </div>
 <div class="main-container">
+	<div class = "warning">
+		<% unless @can_process_recommendation.empty? %>
+				Apakah yang kamu maksud adalah
+				<%= @can_process_recommendation.each do |query|
+				  puts query.upcase + ", "
+				end %>
+				?
+			<% end %>
+		<% unless @can_not_process.empty? %>
+				Kami tidak menemukan bahan
+				<%= @can_not_process.each do |query|
+				  puts query.upcase + ", "
+				end %>
+			<% end %>
+	</div>
+
 	<% j = 1 %>
 	<% @result.each do |res| %>
 	<div class="rest">
@@ -22,7 +38,6 @@
 	   		<div class="menu"> Menu <%= res[:recipes][i].title%></div>
 	   		<% i +=1 %>
 		<% end %>
-		
 		</div>
 	</div>
 	<% end %>
