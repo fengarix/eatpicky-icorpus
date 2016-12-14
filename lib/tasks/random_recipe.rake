@@ -6,6 +6,10 @@ namespace :db do
   	  10.times do
   	  	i = rand(1..Recipe.last.id)
   	  	rec = Recipe.find(i)
+        while restaurant.recipes.include? rec
+          i = rand(1..Recipe.last.id)
+          rec = Recipe.find(i)
+        end
   	  	restaurant.recipes << rec
   	  end
   	end
